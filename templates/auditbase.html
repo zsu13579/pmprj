@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar nav-left">
+            <li><a href="{% url 'auditoverview' %}">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'auditproblem' %}">解决遗留问题</a></li>
+            <li><a href="{% url 'auditprocedure' %}">优化局数据流程</a></li>
+            <li><a href="{% url 'audithistory1' %}">补充历史记录(201411至今)</a></li>
+            <li><a href="{% url 'audithistory2' %}">补充历史记录(2011至201410)</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block auditcontent %}
+            {% endblock %}
+        </div>
+{% endblock %}

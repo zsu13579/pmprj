@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar nav-left">
+            <li><a href="{% url 'bossoverview' %}">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'bossspecification' %}">需求编写</a></li>
+            <li><a href="{% url 'bosstestcase' %}">验收案例编写</a></li>
+            <li><a href="{% url 'bossaccept' %}">验收上线</a></li>
+            <li><a href="{% url 'bossoperationprocess' %}">运营流程制定</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block bosscontent %}
+            {% endblock %}
+        </div>
+{% endblock %}

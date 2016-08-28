@@ -1,0 +1,128 @@
+{% extends 'cmisupportbase.html' %}
+{% load staticfiles %}
+
+{% block cmisupportcontent %}
+
+        <div class="row placeholders table-responsive">
+            <div class="panel-group" id="panel-692180">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-692180" href="#panel-element-100183"><strong>新产品支撑工作</strong></a>
+					</div>
+					<div id="panel-element-100183" class="panel-collapse collapse in">
+						<div class="panel-body">
+                            <table class="table" style="table-layout: fixed">
+                                <thead class="text-center">
+                                    <tr class="text-center">
+                                        <th class="text-center" style="width: 5%;">
+                                            #
+                                        </th>
+                                        <th class="text-center"  style="width: 8%;">
+                                            类别
+                                        </th>
+                                        <th class="text-center"  style="width: 15%;">
+                                            事宜
+                                        </th>
+                                        <th class="text-center">
+                                            完成情况
+                                        </th>
+                                        <th class="text-center"  style="width: 15%;">
+                                            后续工作
+                                        </th>
+                                        <th class="text-center"  style="width: 5%;">
+                                            状态
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in workitems1 %}
+                                    <tr class="{% if item.state == 1 %}active{% elif item.category == '新产品支撑工作' %}warning{% else %}success{% endif %}">
+                                        <td>
+                                            {{ item.itemid }}
+                                        </td>
+                                        <td>
+                                            {{ item.category }}
+                                        </td>
+                                        <td>
+                                            {{ item.name }}
+                                        </td>
+                                        <td>
+                                            {{ item.progress }}
+                                        </td>
+                                        <td>
+                                            {{ item.plan }}
+                                        </td>
+                                        <td>
+                                            {% if item.state == 0 %}进行中{% else %}已完成{% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+             </div>
+         </div>
+
+        <div class="panel-group" id="panel-692181">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-692181" href="#panel-element-100184"><strong>经分支撑工作</strong></a>
+					</div>
+					<div id="panel-element-100184" class="panel-collapse collapse in">
+						<div class="panel-body">
+                            <table class="table" style="table-layout: fixed">
+                                <thead class="text-center">
+                                    <tr class="text-center">
+                                        <th class="text-center" style="width: 5%;">
+                                            #
+                                        </th>
+                                        <th class="text-center"  style="width: 8%;">
+                                            类别
+                                        </th>
+                                        <th class="text-center"  style="width: 15%;">
+                                            事宜
+                                        </th>
+                                        <th class="text-center">
+                                            完成情况
+                                        </th>
+                                        <th class="text-center"  style="width: 15%;">
+                                            后续工作
+                                        </th>
+                                        <th class="text-center"  style="width: 5%;">
+                                            状态
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in workitems2 %}
+                                    <tr class="{% if item.state == 1 %}active{% elif item.category == '新产品支撑工作' %}warning{% else %}success{% endif %}">
+                                        <td>
+                                            {{ item.itemid }}
+                                        </td>
+                                        <td>
+                                            {{ item.category }}
+                                        </td>
+                                        <td>
+                                            {{ item.name }}
+                                        </td>
+                                        <td>
+                                            {{ item.progress }}
+                                        </td>
+                                        <td>
+                                            {{ item.plan }}
+                                        </td>
+                                        <td>
+                                            {% if item.state == 0 %}进行中{% else %}已完成{% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+             </div>
+         </div>
+
+    </div>
+  {% endblock %}

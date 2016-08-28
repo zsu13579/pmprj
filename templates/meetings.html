@@ -1,0 +1,56 @@
+{% extends 'cmisupportbase.html' %}
+{% load staticfiles %}
+
+{% block cmisupportcontent %}
+            <div class="row placeholders" style="text-align: left">
+			<h4 class="text-center" style="margin-bottom: 10px">
+				双方共开展&nbsp;<span style="color: red;font-size: 18px;font-weight: 600;">{{ countmts }}</span>&nbsp;次业务交流会
+			</h4>
+			{% for mt in meetings %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						{{ mt.date | date:'Y-m-d' }}
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div>
+						{{ mt.memo }}
+					</div>
+
+				</div>
+				<div class="panel-footer">
+					参会人员：{{ mt.attender }}
+				</div>
+			</div>
+            {% endfor %}
+			<ul class="pagination pagination-sm" style="float: right">
+				<li>
+                    {% if meetings.has_previous %}
+					<a href="?page={{ meetings.previous_page_number }}">Prev</a>
+                    {% else %}
+                    <a>Prev</a>
+                    {% endif %}
+				</li>
+
+				<li id="pageicon">
+					{% if meetings.has_next %}
+					<a href="?page={{ meetings.next_page_number }}">Next</a>
+                    {% else %}
+                    <a>Next</a>
+                    {% endif %}
+				</li>
+			</ul>
+		</div>
+{% endblock %}
+{% block supportcontentjs %}
+    <!-- 分页动态脚本，未考虑大于15页的情况 -->
+    <script type="application/javascript">
+        for (i=1;i<=15;i++){
+            var activenum = {{ meetings.number }}
+            if(i<={{ countpage }}+1){
+                var sinode = "<li><a href='?page="+i+"'>"+i+"</a><li>"
+                if(i==activenum){sinode = "<li class='active'><a href='?page="+i+"'>"+i+"</a><li>"}
+            $("#pageicon").before(sinode)}}
+    </script>
+{% endblock %}

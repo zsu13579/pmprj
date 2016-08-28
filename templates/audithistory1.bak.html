@@ -1,0 +1,475 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Strength in Numbers</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}?v=20160713002" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" disabled>International Roaming Operation@CMSZ</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'boss' %}">国漫流程优化</a></li>
+            <li><a href="{% url 'auditoverview' %}">审计整改</a></li>
+            <li><a href="{% url 'todolist' %}">督办工作列表</a></li>
+          </ul>
+          <!--
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+          -->
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="auditoverview">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="auditproblem">解决遗留问题</a></li>
+            <li><a href="auditprocedure">优化局数据流程</a></li>
+            <li><a href="audithistory1">补充历史记录(201411至今)</a></li>
+            <li><a href="audithistory2">补充历史记录(2011至201410)</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Dashboard-完成率</h1>
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder" >
+              <div id="main1" style="height: 250px;">
+
+              </div>
+              <h4>问题单收集</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder" >
+              <div id="main2" style="height: 250px;">
+
+              </div>
+              <h4>工单及附件查找</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder" >
+              <div id="main3" style="height: 250px;">
+
+              </div>
+              <h4>导出系统记录表</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder" >
+              <div id="main4" style="height: 250px;">
+
+              </div>
+              <h4>核对</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+          </div>
+
+          <h2 class="sub-header">补充历史记录(201411至今)</h2>
+          <div class="table-responsive">
+            <h4>子阶段1：交流网站问题单收集</h4>
+            <table class="table">
+                <thead class="text-center">
+                    <tr class="text-center">
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            事宜
+                        </th>
+                        <th class="text-center">
+                            负责人
+                        </th>
+                        <th class="text-center">
+                            计划完成时间
+                        </th>
+                        <th class="text-center">
+                            实际完成时间
+                        </th>
+                        <th class="text-center">
+                            状态
+                        </th>
+                        <th class="text-center">
+                            备注
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in audit_stage1_list1 %}
+                    <tr class="text-center {% if item.state == 1 %}active{% elif item.state == 0 %}warning{% else %}success{% endif %}">
+                        <td>
+                            {{ item.itemid }}
+                        </td>
+                        <td>
+                            {{ item.name }}
+                        </td>
+                        <td>
+                            {{ item.incharge }}
+                        </td>
+                        <td>
+                            {{ item.plandate | date:'Y-m-d' }}
+                        </td>
+                        <td>
+                            {{ item.enddate | date:'Y-m-d' }}
+                        </td>
+                        <td>
+                            {% if item.state == 0 %}进行中{% elif item.state == 1 %}已完成{% else %}未启动{% endif %}
+                        </td>
+                        <td>
+                            {{ item.note }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h4>子阶段2：对应工单查找及附件下载</h4>
+            <table class="table">
+                <thead class="text-center">
+                    <tr class="text-center">
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            事宜
+                        </th>
+                        <th class="text-center">
+                            负责人
+                        </th>
+                        <th class="text-center">
+                            计划完成时间
+                        </th>
+                        <th class="text-center">
+                            实际完成时间
+                        </th>
+                        <th class="text-center">
+                            状态
+                        </th>
+                        <th class="text-center">
+                            备注
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in audit_stage1_list2 %}
+                    <tr class="text-center {% if item.state == 1 %}active{% elif item.state == 0 %}warning{% else %}success{% endif %}">
+                        <td>
+                            {{ item.itemid }}
+                        </td>
+                        <td>
+                            {{ item.name }}
+                        </td>
+                        <td>
+                            {{ item.incharge }}
+                        </td>
+                        <td>
+                            {{ item.plandate | date:'Y-m-d' }}
+                        </td>
+                        <td>
+                            {{ item.enddate | date:'Y-m-d' }}
+                        </td>
+                        <td>
+                            {% if item.state == 0 %}进行中{% elif item.state == 1 %}已完成{% else %}未启动{% endif %}
+                        </td>
+                        <td>
+                            {{ item.note }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h4>子阶段3：导出系统记录表</h4>
+            <table class="table">
+                <thead class="text-center">
+                    <tr class="text-center">
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            事宜
+                        </th>
+                        <th class="text-center">
+                            负责人
+                        </th>
+                        <th class="text-center">
+                            计划完成时间
+                        </th>
+                        <th class="text-center">
+                            实际完成时间
+                        </th>
+                        <th class="text-center">
+                            状态
+                        </th>
+                        <th class="text-center">
+                            备注
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in audit_stage1_list3 %}
+                    <tr class="text-center {% if item.state == 1 %}active{% elif item.state == 0 %}warning{% else %}success{% endif %}">
+                        <td>
+                            {{ item.itemid }}
+                        </td>
+                        <td>
+                            {{ item.name }}
+                        </td>
+                        <td>
+                            {{ item.incharge }}
+                        </td>
+                        <td>
+                            {{ item.plandate | date:'Y-m-d' }}
+                        </td>
+                        <td>
+                            {{ item.enddate | date:'Y-m-d' }}
+                        </td>
+                        <td>
+                            {% if item.state == 0 %}进行中{% elif item.state == 1 %}已完成{% else %}未启动{% endif %}
+                        </td>
+                        <td>
+                            {{ item.note }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h4>子阶段4：核对</h4>
+            <table class="table">
+                <thead class="text-center">
+                    <tr class="text-center">
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            事宜
+                        </th>
+                        <th class="text-center">
+                            负责人
+                        </th>
+                        <th class="text-center">
+                            计划完成时间
+                        </th>
+                        <th class="text-center">
+                            实际完成时间
+                        </th>
+                        <th class="text-center">
+                            状态
+                        </th>
+                        <th class="text-center">
+                            备注
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in audit_stage1_list4 %}
+                    <tr class="text-center {% if item.state == 1 %}active{% elif item.state == 0 %}warning{% else %}success{% endif %}">
+                        <td>
+                            {{ item.itemid }}
+                        </td>
+                        <td>
+                            {{ item.name }}
+                        </td>
+                        <td>
+                            {{ item.incharge }}
+                        </td>
+                        <td>
+                            {{ item.plandate | date:'Y-m-d' }}
+                        </td>
+                        <td>
+                            {{ item.enddate | date:'Y-m-d' }}
+                        </td>
+                        <td>
+                            {% if item.state == 0 %}进行中{% elif item.state == 1 %}已完成{% else %}未启动{% endif %}
+                        </td>
+                        <td>
+                            {{ item.note }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- 第一阶段结束 -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/echarts.min.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script type="text/javascript">
+
+		 // 基于准备好的dom，初始化echarts实例
+	    var myChart1 = echarts.init(document.getElementById('main1'));
+		myChart1.showLoading();
+	    // 指定图表的配置项和数据
+	    <!-- var valueorg = "{{actinfo.countactivate}}"/"{{actinfo.countall}}"; -->
+	    <!-- var value = valueorg.toFixed(2) -->
+         var value = 60
+	    var option1 = {
+		    tooltip : {
+		        formatter: "{a} <br/>{b} : {c}%"
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		    toolbox: {
+		        feature: {
+		            restore: {},
+		            saveAsImage: {}
+		        }
+		    },
+		    series: [
+		        {
+		            name: '业务指标',
+		            type: 'gauge',
+		            detail: {formatter:'{value}%',textStyle:{fontSize: 18, color: 'red', fontWeight: 800}, offsetCenter: [0, '60%']},
+		            data: [{value: value}],
+		        }
+		    ]
+		};
+
+		myChart1.setOption(option1, true);
+		myChart1.hideLoading();
+
+         // 基于准备好的dom，初始化echarts实例
+	    var myChart2 = echarts.init(document.getElementById('main2'));
+		myChart2.showLoading();
+	    // 指定图表的配置项和数据
+	    <!-- var valueorg = "{{actinfo.countactivate}}"/"{{actinfo.countall}}"; -->
+	    <!-- var value = valueorg.toFixed(2) -->
+        var value = 60
+	    var option2 = {
+		    tooltip : {
+		        formatter: "{a} <br/>{b} : {c}%"
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		    toolbox: {
+		        feature: {
+		            restore: {},
+		            saveAsImage: {}
+		        }
+		    },
+		    series: [
+		        {
+		            name: '业务指标',
+		            type: 'gauge',
+		            detail: {formatter:'{value}%',textStyle:{fontSize: 18, color: 'red', fontWeight: 800}, offsetCenter: [0, '60%']},
+		            data: [{value: value}],
+		        }
+		    ]
+		};
+
+		myChart2.setOption(option2, true);
+		myChart2.hideLoading();
+
+         // 基于准备好的dom，初始化echarts实例
+	    var myChart3 = echarts.init(document.getElementById('main3'));
+		myChart3.showLoading();
+	    // 指定图表的配置项和数据
+	    <!-- var valueorg = "{{actinfo.countactivate}}"/"{{actinfo.countall}}"; -->
+	    <!-- var value = valueorg.toFixed(2) -->
+        var value = 30
+	    var option3 = {
+		    tooltip : {
+		        formatter: "{a} <br/>{b} : {c}%"
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		    toolbox: {
+		        feature: {
+		            restore: {},
+		            saveAsImage: {}
+		        }
+		    },
+		    series: [
+		        {
+		            name: '业务指标',
+		            type: 'gauge',
+		            detail: {formatter:'{value}%',textStyle:{fontSize: 18, color: 'red', fontWeight: 800}, offsetCenter: [0, '60%']},
+		            data: [{value: value}],
+		        }
+		    ]
+		};
+
+		myChart3.setOption(option3, true);
+		myChart3.hideLoading();
+
+         // 基于准备好的dom，初始化echarts实例
+	    var myChart4 = echarts.init(document.getElementById('main4'));
+		myChart4.showLoading();
+	    // 指定图表的配置项和数据
+	    <!-- var valueorg = "{{actinfo.countactivate}}"/"{{actinfo.countall}}"; -->
+	    <!-- var value = valueorg.toFixed(2) -->
+        var value = 60
+	    var option4 = {
+		    tooltip : {
+		        formatter: "{a} <br/>{b} : {c}%"
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		    toolbox: {
+		        feature: {
+		            restore: {},
+		            saveAsImage: {}
+		        }
+		    },
+		    series: [
+		        {
+		            name: '业务指标',
+		            type: 'gauge',
+		            detail: {formatter:'{value}%',textStyle:{fontSize: 18, color: 'red', fontWeight: 800}, offsetCenter: [0, '60%']},
+		            data: [{value: value}],
+		        }
+		    ]
+		};
+
+		myChart4.setOption(option4, true);
+		myChart4.hideLoading();
+
+	</script>
+  </body>
+</html>

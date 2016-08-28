@@ -1,0 +1,46 @@
+{% extends 'cmisupportbase.html' %}
+{% load staticfiles %}
+
+{% block cmisupportcontent %}
+
+		<div class="row placeholders" style="text-align: left">
+		<div class="col-md-9" style="border: dotted 1px;margin-top: 30px">
+            <div class = 'topreport'>
+			<p style="margin-top: 30px">
+			</p>
+			<p class="MsoNormal text-center">
+				<strong><span style="color: red;font-size: 22px">深圳公司对国际公司需求支撑工作简报</span></strong>
+
+			</p>
+			<p class="MsoNormal text-center" style="color: red;font-size: 18px">
+				<strong><span>第</span></strong><strong><span>{{ report.reportid }}</span></strong><strong><span>期</span></strong>
+
+			</p>
+			<p class="MsoNormal text-right" style="line-height: 20px">
+				<span>{{ report.dateperiod }}</span>
+
+			</p>
+            </div>
+
+            <div name="content">{{ report.content | safe }}</div>
+
+		</div>
+		<div class="col-md-3">
+            <div class="tuwen">
+			<h3 style="font-size: 20px">
+				简报归档
+			</h3>
+			<ul style="padding-left: 10px;">
+
+                {% for rp in report_list %}
+				<li style="margin: 0px">
+                  <p><span class="tutime" ><a href="?reportid={{ rp.reportid }}" style="font-size: 18px">第{{ rp.reportid }}期</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?reportid={{ rp.reportid }}">查看</a>&nbsp;&nbsp;<a href="/download/{{ rp.filename }}">下载</a></p>
+                </li >
+                {% endfor %}
+
+			</ul>
+            </div>
+		</div>
+	</div>
+
+{% endblock %}

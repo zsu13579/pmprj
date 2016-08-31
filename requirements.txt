@@ -1,5 +1,6 @@
 backports.ssl-match-hostname==3.4.0.2
 certifi==2015.4.28
+dj-database-url==0.4.1
 Django==1.8.3
 ipython==3.0.0
 Jinja2==2.7.3
@@ -28,3 +29,5 @@ virtualenv==15.0.1
 xlrd==0.9.3
 xlsxwriter==0.9.3
 xlwt==1.0.0
+whitenoise==3.2.1
+

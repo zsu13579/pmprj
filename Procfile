@@ -1,1 +1,1 @@
-web: gunicorn myherokuproject.wsgi
+web: gunicorn pmprj.wsgi --log-file -

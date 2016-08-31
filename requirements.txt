@@ -31,5 +31,5 @@ xlsxwriter==0.9.3
 xlwt==1.0.0
 whitenoise==3.2.1
 gunicorn==19.6.0
-getycopg2==2.6.1
+psycopg2==2.6.2
 

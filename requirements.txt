@@ -2,7 +2,6 @@ backports.ssl-match-hostname==3.4.0.2
 certifi==2015.4.28
 Django==1.8.3
 ipython==3.0.0
-jdcal==1.0
 Jinja2==2.7.3
 jsonschema==2.4.0
 lxml==3.6.0

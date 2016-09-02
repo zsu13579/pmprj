@@ -43,5 +43,5 @@ urlpatterns = [
         {"document_root": settings.MEDIA_ROOT, }),
     url(r"^download/(?P<path>.*)$", \
         "django.views.static.serve", \
-        {"document_root": settings.MEDIA_ROOT+'/report', }),
+        {"document_root": settings.MEDIA_ROOT+'\\report', }),
 ]

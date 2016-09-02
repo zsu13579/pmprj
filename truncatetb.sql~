@@ -1,0 +1,14 @@
+truncate table pmapp_audithistory1;              
+truncate table pmapp_audithistory2;             
+truncate table pmapp_audithistorystagepercent1;  
+truncate table pmapp_audithistorystagepercent2;  
+truncate table pmapp_auditoverview;              
+truncate table pmapp_auditproblem;               
+truncate table pmapp_auditproblemstagepercent;  
+truncate table pmapp_auditprocedure;             
+truncate table pmapp_auditprocedurestagepercent; 
+truncate table pmapp_bossaccept;                 
+truncate table pmapp_bossoperationprocess;       
+truncate table pmapp_bossoverview;              
+truncate table pmapp_bossspec;                   
+truncate table pmapp_bosstestcase;      

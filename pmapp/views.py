@@ -29,6 +29,10 @@ def reports(request):
     report_list = Report.objects.all()
     return render(request, 'reports.html', locals())
 
+def tabledemo(request):
+
+    return render(request, 'table-demo.html', locals())
+
 def auditoverview(request):
     audit_overview_list = AuditOverview.objects.all()
 

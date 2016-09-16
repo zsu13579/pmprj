@@ -1,0 +1,39 @@
+{% extends 'cmisupportbase.html' %}
+{% load staticfiles %}
+
+{% block cmisupportcontent %}
+
+    <table data-toggle="table">
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Item Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Item 1</td>
+                <td>$1</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Item 2</td>
+                <td>$2</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
+{% block supportcontentjs %}
+    <!-- 分页动态脚本，未考虑大于15页的情况 -->
+    <script type="application/javascript">
+        for (i=1;i<=15;i++){
+            var activenum = {{ meetings.number }}
+            if(i<={{ countpage }}+1){
+                var sinode = "<li><a href='?page="+i+"'>"+i+"</a><li>"
+                if(i==activenum){sinode = "<li class='active'><a href='?page="+i+"'>"+i+"</a><li>"}
+            $("#pageicon").before(sinode)}}
+    </script>
+{% endblock %}

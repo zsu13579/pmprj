@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^$', 'pmapp.views.index', name='index'),
     url(r'^meetings/', 'pmapp.views.meetings', name='meetings'),
     url(r'^reports/', 'pmapp.views.reports', name='reports'),
+    url(r'^tabledemo/', 'pmapp.views.tabledemo', name='tabledemo'),
     url(r'^auditoverview/', 'pmapp.views.auditoverview', name='auditoverview'),
     url(r'^auditproblem/', 'pmapp.views.auditproblem', name='auditproblem'),
     url(r'^auditprocedure/', 'pmapp.views.auditprocedure', name='auditprocedure'),

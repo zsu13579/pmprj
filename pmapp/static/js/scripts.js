@@ -15,4 +15,13 @@ $(function(){
     //  $(this).parent().addClass('active')
     //
     // });
+
+    var $table = $('#table');
+	$('#toolbar').find('select').change(function () {
+    $table.bootstrapTable('refreshOptions', {
+      exportDataType: $(this).val()
+    });
+
+  });
+
 });

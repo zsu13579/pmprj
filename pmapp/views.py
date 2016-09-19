@@ -33,6 +33,13 @@ def tabledemo(request):
 
     return render(request, 'table-demo.html', locals())
 
+def data1(request):
+    jfile = "data/data1/demo.response.json"
+    with open(jfile, "r") as f:
+        demodata = f
+        print demodata
+        return HttpResponse(demodata)
+
 def auditoverview(request):
     audit_overview_list = AuditOverview.objects.all()
 
